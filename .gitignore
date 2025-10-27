@@ -53,6 +53,8 @@ data/
 
 # Annotations
 *.json
+!config_example.json
+!*_config.json
 *.xml
 *.txt
 !requirements.txt
