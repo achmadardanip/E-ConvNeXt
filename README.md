@@ -4,26 +4,91 @@
 [![PaddlePaddle 2.4+](https://img.shields.io/badge/PaddlePaddle-2.4+-orange.svg)](https://www.paddlepaddle.org.cn/)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
 
-**🚀 [Quick Start Guide](QUICKSTART.md)** | **📓 [Jupyter Notebook](E_ConvNeXt_Flexible_Training.ipynb)** | **📖 [Usage Guide](NOTEBOOK_USAGE.md)**
+**🚀 [Quick Start](QUICKSTART.md)** | **📓 [Jupyter Notebook](E_ConvNeXt_Flexible_Training.ipynb)** | **📖 [Usage Guide](NOTEBOOK_USAGE.md)** | **🧪 [Testing](TESTING.md)**
 
-> **Abstract:** from the outset, which has greatly restricted their scope of application. This paper takes ConvNeXt as
-the research object and significantly reduces the parameter scale and network complexity of ConvNeXt
-by integrating the Cross Stage Partial Connections mechanism and a series of optimized designs. The
-new network is named E-ConvNeXt, which can maintain high accuracy performance under different
-complexity configurations.The three core innovations of E-ConvNeXt are : (1) integrating the Cross
-Stage Partial Network (CSPNet) with ConvNeXt and adjusting the network structure, which reduces
-the model’s network complexity by up to 80%; (2) Optimizing the Stem and Block structures to
-enhance the model’s feature expression capability and operational efficiency; (3) Replacing Layer
-Scale with channel attention.Experimental validation on ImageNet classification demonstrates E-ConvNeXt’s superior accuracy-efficiency balance: E-ConvNeXt-mini reaches 78.3% Top-1 accuracy
-at 0.9G FLOPs. E-ConvNeXt-small reaches 81.9% Top-1 accuracy at 3.1G FLOPs. Transfer learning
-tests on object detection tasks further confirm its generalization capability.
+## 📑 Table of Contents
 
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Model Architecture](#model-architecture)
+- [Performance](#performance)
+- [Documentation](#documentation)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Results](#results)
+- [Acknowledgements](#acknowledgements)
+
+## ✨ Features
+
+🎯 **Flexible Training**: Support for both image classification and object detection tasks  
+⚡ **Efficient Architecture**: Up to 80% reduction in network complexity compared to ConvNeXt  
+🚀 **Optimized for Laptops**: Configured for RTX 3050 GPU and Intel i7 CPU  
+📊 **Pre-trained Models**: Transfer learning with ImageNet pre-trained weights  
+💾 **Multiple Export Formats**: Export to H5, ONNX, and PaddlePaddle inference format  
+🔌 **Offline Ready**: Full support for offline production environments  
+📓 **Interactive Notebook**: Complete Jupyter notebook for easy experimentation  
+
+## 🚀 Quick Start
+
+### Option 1: Jupyter Notebook (Recommended for Beginners)
+
+```bash
+# Install dependencies
+pip install paddlepaddle-gpu jupyter
+
+# Launch notebook
+jupyter lab E_ConvNeXt_Flexible_Training.ipynb
+```
+
+See [QUICKSTART.md](QUICKSTART.md) for detailed instructions.
+
+### Option 2: Command Line Training
+
+For image classification:
+```bash
+cd classification
+python tools/train.py -c ppcls/configs/ImageNet/ConvNext/E-ConvNext_mini.yaml
+```
+
+For object detection:
+```bash
+cd detection
+python tools/train.py -c configs/ppyoloe_E_ConvNeXt/ppyoloe_m_cspconvnext_mini_36e_coco.yml
+```
+
+## 🏗️ Model Architecture
+
+E-ConvNeXt introduces three key innovations:
+
+1. **CSPNet Integration**: Cross Stage Partial Network connections for 80% complexity reduction
+2. **Optimized Structures**: Enhanced Stem and Block designs for better efficiency
+3. **Channel Attention**: Replaces Layer Scale with more effective attention mechanism
+
+### Available Models
+
+| Model | Parameters | FLOPs | Top-1 Acc | Speed (RTX 3050)* |
+|-------|-----------|-------|-----------|-------------------|
+| E-ConvNeXt-mini | 7.6M | 0.9G | 78.3% | ~180 FPS |
+| E-ConvNeXt-tiny | 13.2M | 2.0G | 80.6% | ~130 FPS |
+| E-ConvNeXt-small | 19.4M | 3.1G | 81.9% | ~100 FPS |
+
+*Batch size = 32, Image size = 224×224
+
+## 📖 Documentation
+
+- **[QUICKSTART.md](QUICKSTART.md)** - Get started in 5 minutes
+- **[NOTEBOOK_USAGE.md](NOTEBOOK_USAGE.md)** - Complete notebook guide (10K+ words)
+- **[TESTING.md](TESTING.md)** - Testing and validation guide
+- **[config_example.json](config_example.json)** - Example configuration file
+- **[prepare_dataset.py](prepare_dataset.py)** - Dataset preparation helper
+
+## 📊 Performance
 
 <div align="center">
   <img src="Images/FLOPs_ACC.png" width="600px" />
 </div>
 
-# Classification results
+## Classification Results
 ### Image Classification for [ImageNet-1K](https://www.image-net.org)
 
 | Model                    | FLOPs | #Params | Resolution | Top-1 |
@@ -32,7 +97,7 @@ tests on object detection tasks further confirm its generalization capability.
 | E-ConvNeXt-tiny           | 2.0G  |  13.2M   | 224 x 224  | 80.6  |
 | E-ConvNeXt-small           | 3.1G  |  19.4M   | 224 x 224  | 81.9  |
 
-# Downstream Results
+## Downstream Results
 ## Object Detection for underwater sonar images
 [underwater sonor dataset link](https://github.com/violetweir/Sonor_dataset)
 
@@ -62,33 +127,28 @@ tests on object detection tasks further confirm its generalization capability.
 | YOLOv10-L | 120 |56.4|
 | YOLOv10-L E-ConvNeXt-tiny | 78.0 | 61.2 |
 
-## 🚀 Flexible Training with Jupyter Notebook
+## 💻 Usage Options
 
-**NEW!** We provide a comprehensive Jupyter notebook for flexible training on both image classification and object detection tasks:
+### Option 1: Jupyter Notebook (Recommended)
 
-- **[E_ConvNeXt_Flexible_Training.ipynb](E_ConvNeXt_Flexible_Training.ipynb)** - Interactive notebook with full training pipeline
-- **[NOTEBOOK_USAGE.md](NOTEBOOK_USAGE.md)** - Complete usage guide
-- **[prepare_dataset.py](prepare_dataset.py)** - Helper script for dataset preparation
+For interactive training with flexible dataset support:
+- **[E_ConvNeXt_Flexible_Training.ipynb](E_ConvNeXt_Flexible_Training.ipynb)** - Complete training pipeline
+- **[NOTEBOOK_USAGE.md](NOTEBOOK_USAGE.md)** - Detailed usage guide
+- **[prepare_dataset.py](prepare_dataset.py)** - Dataset preparation helper
 
-### Features:
-✅ Switch between classification and detection tasks  
-✅ Flexible dataset configuration  
-✅ Pre-trained model boosting  
-✅ Optimized for laptop training (i7 + RTX 3050)  
-✅ Export to H5 format  
-✅ Offline production ready  
+### Option 2: Command Line
 
-See [NOTEBOOK_USAGE.md](NOTEBOOK_USAGE.md) for detailed instructions.
+For advanced users and production training:
+- **Classification**: See [classification/README](classification/README.md)
+- **Object Detection**: See [detection/README](detection/README.md)
 
----
+## 📚 Additional Resources
 
-If you want to train an E-ConvNeXt image classification model using the command line, please refer to [classification/README](classification/README.md)
+- **[QUICKSTART.md](QUICKSTART.md)** - 5-minute quick start guide
+- **[TESTING.md](TESTING.md)** - Testing and validation guide
+- **[config_example.json](config_example.json)** - Configuration template
 
-If you want to use E-ConvNeXt as the backbone for object detection using the command line, please refer to [detection/README](detection/README.md)
-
-
-
-# Acknowledgements
+## Acknowledgements
 
 We are grateful, but not limited to, to the following knowledge bases and communities for their assistance in our research:
 
