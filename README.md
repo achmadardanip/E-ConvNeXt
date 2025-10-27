@@ -1,5 +1,11 @@
 # E-ConvNeXt: A Lightweight and Efficient ConvNeXt Variant with Cross-Stage Partial Connections
 
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![PaddlePaddle 2.4+](https://img.shields.io/badge/PaddlePaddle-2.4+-orange.svg)](https://www.paddlepaddle.org.cn/)
+[![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
+
+**🚀 [Quick Start Guide](QUICKSTART.md)** | **📓 [Jupyter Notebook](E_ConvNeXt_Flexible_Training.ipynb)** | **📖 [Usage Guide](NOTEBOOK_USAGE.md)**
+
 > **Abstract:** from the outset, which has greatly restricted their scope of application. This paper takes ConvNeXt as
 the research object and significantly reduces the parameter scale and network complexity of ConvNeXt
 by integrating the Cross Stage Partial Connections mechanism and a series of optimized designs. The
@@ -56,9 +62,29 @@ tests on object detection tasks further confirm its generalization capability.
 | YOLOv10-L | 120 |56.4|
 | YOLOv10-L E-ConvNeXt-tiny | 78.0 | 61.2 |
 
-If you want to train an E-ConvNeXt image classification model, please refer to [classification/README](classification/README.md)
+## 🚀 Flexible Training with Jupyter Notebook
 
-If you want to use E-ConvNeXt as the backbone for object detection, please refer to [detection/README](detection/README.md)
+**NEW!** We provide a comprehensive Jupyter notebook for flexible training on both image classification and object detection tasks:
+
+- **[E_ConvNeXt_Flexible_Training.ipynb](E_ConvNeXt_Flexible_Training.ipynb)** - Interactive notebook with full training pipeline
+- **[NOTEBOOK_USAGE.md](NOTEBOOK_USAGE.md)** - Complete usage guide
+- **[prepare_dataset.py](prepare_dataset.py)** - Helper script for dataset preparation
+
+### Features:
+✅ Switch between classification and detection tasks  
+✅ Flexible dataset configuration  
+✅ Pre-trained model boosting  
+✅ Optimized for laptop training (i7 + RTX 3050)  
+✅ Export to H5 format  
+✅ Offline production ready  
+
+See [NOTEBOOK_USAGE.md](NOTEBOOK_USAGE.md) for detailed instructions.
+
+---
+
+If you want to train an E-ConvNeXt image classification model using the command line, please refer to [classification/README](classification/README.md)
+
+If you want to use E-ConvNeXt as the backbone for object detection using the command line, please refer to [detection/README](detection/README.md)
 
 
 
