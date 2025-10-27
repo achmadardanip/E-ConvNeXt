@@ -1,0 +1,82 @@
+{
+  "task": "classification",
+  "model_architecture": "mini",
+  "description": "Example configuration for E-ConvNeXt flexible training",
+  
+  "model": {
+    "architecture": "mini",
+    "num_classes": 10,
+    "pretrained": true,
+    "pretrained_path": null,
+    "drop_path_rate": 0.1,
+    "layer_scale_init_value": 1e-6
+  },
+  
+  "dataset": {
+    "classification": {
+      "dataset_root": "dataset/custom_dataset",
+      "train_list": "dataset/custom_dataset/train_list.txt",
+      "val_list": "dataset/custom_dataset/val_list.txt",
+      "image_size": 224
+    },
+    "detection": {
+      "dataset_root": "dataset/coco_format",
+      "train_anno": "dataset/coco_format/annotations/instances_train.json",
+      "val_anno": "dataset/coco_format/annotations/instances_val.json",
+      "image_size": 640
+    }
+  },
+  
+  "training": {
+    "batch_size": {
+      "classification": 32,
+      "detection": 8
+    },
+    "epochs": 50,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.05,
+    "warmup_epochs": 5,
+    "num_workers": 4,
+    "optimizer": "AdamW",
+    "lr_scheduler": "cosine",
+    "gradient_clip": 1.0
+  },
+  
+  "hardware": {
+    "device": "gpu",
+    "gpu_ids": "0",
+    "mixed_precision": true,
+    "comment": "Optimized for RTX 3050 (4GB VRAM) and Intel i7 CPU"
+  },
+  
+  "output": {
+    "output_dir": "./output",
+    "save_interval": 10,
+    "eval_interval": 1,
+    "save_best_only": false,
+    "export_h5": true
+  },
+  
+  "augmentation": {
+    "enabled": true,
+    "random_flip": true,
+    "random_rotation": 15,
+    "random_brightness": 0.2,
+    "random_contrast": 0.2,
+    "cutmix": false,
+    "mixup": false
+  },
+  
+  "inference": {
+    "confidence_threshold": 0.5,
+    "top_k": 5,
+    "batch_inference": true
+  },
+  
+  "notes": [
+    "Adjust batch_size based on available GPU memory",
+    "For RTX 3050 (4GB): batch_size=32 for classification, 8 for detection",
+    "Enable mixed_precision for faster training",
+    "Set num_workers based on CPU cores (i7 has 4-8 cores)"
+  ]
+}
